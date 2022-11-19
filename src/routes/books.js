@@ -4,7 +4,7 @@ var router = express.Router();
 
 module.exports = (models) => {
   /* GET users listing. */
-  router.get('/', function (req, res, next) {
+  router.get('/', (req, res, next) => {
     models.Books.findAll()
       .then(data => {
         res.json(data);
@@ -12,7 +12,7 @@ module.exports = (models) => {
 
   });
 
-  router.get('/:language', function (req, res, next) {
+  router.get('/:language', (req, res, next) => {
     models.Books.findAll({
       where: {
         language: req.params.language
