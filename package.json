@@ -22,9 +22,14 @@
   "devDependencies": {
     "nodemon": "^2.0.20"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/salty-wildwood-83720.git"
+  },
   "keywords": [
     "node",
     "heroku",
     "express"
-  ]
+  ],
+  "license": "MIT"
 }
