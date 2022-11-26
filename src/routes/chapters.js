@@ -11,9 +11,7 @@ module.exports = (models) => {
         where.book_number = req.query.book_number
     }
 
-    models.Chapters.findAll({
-        where:where
-    })
+    models.Chapters.findAll({ where })
       .then(data => {
         res.json(data);
       });
