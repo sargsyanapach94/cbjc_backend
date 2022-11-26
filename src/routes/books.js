@@ -12,10 +12,10 @@ module.exports = (models) => {
 
   });
 
-  router.get('/:language', (req, res, next) => {
+  router.get('/:translationId', (req, res, next) => {
     models.Books.findAll({
       where: {
-        language: req.params.language
+        translation_id: req.params.translationId
       }
     })
       .then(data => {
