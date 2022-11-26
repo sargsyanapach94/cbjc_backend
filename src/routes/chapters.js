@@ -6,14 +6,18 @@ module.exports = (models) => {
   /* GET users listing. */
   router.get('/', (req, res, next) => {
     const where={}
-    if(req.query.translation_id){
-      where.translation_id=req.query.translation_id
+    if (req.query.translation_id && req.query.book_number){
+        where.translation_id = req.query.translation_id
+        where.book_number = req.query.book_number
     }
-    console.log(where)
-    models.Books.findAll({where:where})
+
+    models.Chapters.findAll({
+        where:where
+    })
       .then(data => {
         res.json(data);
       });
+
   });
 
   return router;
