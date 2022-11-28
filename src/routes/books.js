@@ -3,25 +3,17 @@ var router = express.Router();
 
 
 module.exports = (models) => {
-  /* GET users listing. */
   router.get('/', (req, res, next) => {
-    models.Books.findAll()
+
+    const where={};
+    if(req.query.translation_id){
+      where.translation_id=req.query.translation_id;
+    }
+
+    models.Books.findAll({ where })
       .then(data => {
         res.json(data);
       });
-
-  });
-
-  router.get('/:translationId', (req, res, next) => {
-    models.Books.findAll({
-      where: {
-        translation_id: req.params.translationId
-      }
-    })
-      .then(data => {
-        res.json(data);
-      });
-
   });
 
   return router;

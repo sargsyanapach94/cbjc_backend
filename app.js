@@ -7,7 +7,10 @@ const logger = require('morgan');
 const initAPI = require('./src');
 
 const app = express();
+//ToDo ---> config or write
+const cors = require('cors')
 
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
