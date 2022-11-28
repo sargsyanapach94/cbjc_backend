@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 
 router.get('/', (req, res) => {
   const { models: { Bible_translations } } = req.app.get('bibleDb');
 
-  Bible_translations.findAll()
+  Bible_translations.findAll({ raw: true })
     .then(data => {
       res.json(data);
     });
@@ -14,11 +14,12 @@ router.get('/', (req, res) => {
 
 router.get('/:language', (req, res) => {
   const { models: { Bible_translations } } = req.app.get('bibleDb');
-  
+
   Bible_translations.findAll({
     where: {
       language: req.params.language
-    }
+    }, 
+    raw: true,
   })
     .then(data => {
       res.json(data);

@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     where.translation_id = req.query.translation_id;
   }
 
-  Books.findAll({ where })
+  Books.findAll({ where, raw: true })
     .then(data => {
       res.json(data);
     });
