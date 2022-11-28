@@ -10,7 +10,10 @@ router.get('/', (req, res) => {
     where.translation_id = req.query.translation_id;
   }
 
-  Books.findAll({ where, raw: true })
+  Books.findAll({ 
+    where, 
+    raw: true, 
+    order: [ ['number', 'ASC'], ['testament', 'ASC'] ] })
     .then(data => {
       res.json(data);
     });
