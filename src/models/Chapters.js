@@ -3,7 +3,7 @@ const {
     DataTypes
 } = require('sequelize');
 
-module.exports = (sequelize, force) => {
+module.exports = (sequelize) => {
     const Chapters = sequelize.define('Chapters', {
         // Model attributes are defined here
         title: {
@@ -41,13 +41,7 @@ module.exports = (sequelize, force) => {
         // Other model options go here
     });
 
-    Chapters.sync({
-        force,
-        alter: true
-    })
-
     // `sequelize.define` also returns the model
     console.log('Chapters model initilized.'); // true
-
     return Chapters;
 }

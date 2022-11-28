@@ -2,28 +2,28 @@ var express = require('express');
 var router = express.Router();
 
 
-module.exports = (models) => {
-  /* GET users listing. */
-  router.get('/', function (req, res, next) {
+router.get('/', (req, res) => {
+  const { models: { Bible_translations } } = req.app.get('bibleDb');
 
-    models.Bible_translations.findAll()
-      .then(data => {
-        res.json(data);
-      });
+  Bible_translations.findAll()
+    .then(data => {
+      res.json(data);
+    });
 
-  });
+});
 
-  router.get('/:language', function (req, res, next) {
-    models.Bible_translations.findAll({
-      where: {
-        language: req.params.language
-      }
-    })
-      .then(data => {
-        res.json(data);
-      });
+router.get('/:language', (req, res) => {
+  const { models: { Bible_translations } } = req.app.get('bibleDb');
+  
+  Bible_translations.findAll({
+    where: {
+      language: req.params.language
+    }
+  })
+    .then(data => {
+      res.json(data);
+    });
 
-  });
+});
 
-  return router;
-}
+module.exports = router;

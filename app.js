@@ -7,7 +7,7 @@ const logger = require('morgan');
 const initAPI = require('./src');
 
 const app = express();
-//ToDo ---> config or write
+// TODO: ---> config or write
 const cors = require('cors')
 
 app.use(cors());

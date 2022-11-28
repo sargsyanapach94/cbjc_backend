@@ -1,16 +1,9 @@
 const { Sequelize } = require('sequelize');
-const path = require('path')
 
-const storage = path.normalize(__dirname + '/bible_v1.4.17.db');
+const config = require('./db.config');
 
 module.exports = () => {
-  const sequelizeDB = new Sequelize('bible', '', '', {
-      dialect: 'sqlite',
-      storage,
-      transactionType: 'IMMEDIATE',
-      // disable logging; default: console.log
-      logging: false
-  });
+  const bibleDb = new Sequelize('bible', '', '', config);
 
   // try {
   //     await sequelize.authenticate();
@@ -19,5 +12,5 @@ module.exports = () => {
   //     console.error('Unable to connect to the database:', error);
   // }
 
-  return sequelizeDB;
+  return bibleDb;
 };
