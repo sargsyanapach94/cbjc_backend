@@ -8,6 +8,7 @@ router.get('/:translation_id/:book_number', (req, res) => {
   Chapters.findAll({
     where: { translation_id, book_number },
     raw: true,
+    order: [ ['number', 'ASC'] ],
   })
     .then(data => {
       res.json(data.map(({ text, updatedAt, createdAt, ...rest }) => rest));
