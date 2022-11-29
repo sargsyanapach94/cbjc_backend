@@ -1,4 +1,5 @@
 const express = require('express');
+const { Op } = require("sequelize");
 const router = express.Router();
 
 router.get('/:translation_id/:book_number', (req, res) => {
@@ -8,10 +9,27 @@ router.get('/:translation_id/:book_number', (req, res) => {
   Chapters.findAll({
     where: { translation_id, book_number },
     raw: true,
-    order: [ ['number', 'ASC'] ],
+    order: [['number', 'ASC']],
   })
     .then(data => {
-      res.json(data.map(({ text, updatedAt, createdAt, ...rest }) => rest));
+      res.json(data.map(({ text, updatedAt, createdAt, id, book_id, ...rest }) => rest));
+    });
+});
+
+router.get('/translations-texts/:book_number/:chapter_number', (req, res) => {
+  const { book_number, chapter_number } = req.params;
+  const translationIds = req.query.translationIds?.split(',');
+  const { models: { Chapters } } = req.app.get('bibleDb');
+  if(!translationIds?.length) {
+    return  res.send('Please send translationIds in query as a sting seperated with "," .');
+  }
+
+  Chapters.findAll({
+    where: { translation_id: { [Op.or]: translationIds }, book_number, number: chapter_number },
+    raw: true,
+  })
+    .then(data => {
+      res.json(data.map(({ updatedAt, createdAt, id, book_id, ...rest }) => rest));
     });
 });
 
@@ -23,7 +41,7 @@ router.get('/:translation_id/:book_number/:chapter_number', (req, res) => {
     where: { translation_id, book_number, number: chapter_number },
     raw: true,
   })
-    .then(({ updatedAt, createdAt, ...rest }) => {
+    .then(({ updatedAt, createdAt, id, book_id,...rest }) => {
       res.json(rest);
     });
 });
