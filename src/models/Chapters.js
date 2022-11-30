@@ -42,6 +42,6 @@ module.exports = (sequelize) => {
     });
 
     // `sequelize.define` also returns the model
-    console.log('Chapters model initilized.'); // true
+    console.log('Chapters model initialized.'); // true
     return Chapters;
 }

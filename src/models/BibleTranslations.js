@@ -29,6 +29,6 @@ module.exports = (sequelize) => {
     });
 
     // `sequelize.define` also returns the model
-    console.log('BibleTranslations model initilized.');
+    console.log('BibleTranslations model initialized.');
     return BibleTranslations;
 }

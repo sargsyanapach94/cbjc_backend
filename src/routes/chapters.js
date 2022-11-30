@@ -21,7 +21,7 @@ router.get('/translations-texts/:book_number/:chapter_number', (req, res) => {
   const translationIds = req.query.translationIds?.split(',');
   const { models: { Chapters } } = req.app.get('bibleDb');
   if(!translationIds?.length) {
-    return  res.send('Please send translationIds in query as a sting seperated with "," .');
+    return  res.send('Please send translationIds in query as a sting separated with "," .');
   }
 
   Chapters.findAll({

@@ -38,6 +38,6 @@ module.exports = (sequelize) => {
     });
 
     // `sequelize.define` also returns the model
-    console.log('Books model initilized.'); // true
+    console.log('Books model initialized.'); // true
     return Books;
 }

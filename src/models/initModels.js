@@ -1,11 +1,11 @@
 const books = require('./Books');
 const chapters = require('./Chapters');
-const Bibletranslations = require('./BibleTranslations');
+const BibleTranslations = require('./BibleTranslations');
 
 const initModels = (sequelizeDb) => {
     books(sequelizeDb);
     chapters(sequelizeDb);
-    Bibletranslations(sequelizeDb);
+    BibleTranslations(sequelizeDb);
 }
 
 module.exports = initModels
